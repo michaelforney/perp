@@ -14,7 +14,7 @@
 
 /* release version string: */
 #ifndef SISSYLOG_VERSION
-#define SISSYLOG_VERSION "2.04"
+#define SISSYLOG_VERSION "2.05"
 #endif
 
 #ifndef LOGLINE_MAX

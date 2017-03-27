@@ -1,7 +1,20 @@
 # CHANGES
 # perp release history and changelog
-# wcm, 2010.02.17 - 2011.03.22
+# wcm, 2010.02.17 - 2012.01.04
 # ===
+
+perp-2.05 (2012.01.04):
+ * runuid:
+   - added option -g, set base group permission
+   - added option -s, set supplemental groups with initgroups(3)
+   - added option -S, set supplemental groups from list
+   - manpage updated
+ * perp-setup:
+   - fixed error in /etc/perp/.control symlink setup/initialization
+ * perpd:
+   - fixed "reset" targets to get correct exit/wstat arguments
+ * perpstat:
+   - fixed message for usage help
 
 perp-2.04 (2011.03.22):
  * perphup:
