@@ -6,18 +6,17 @@
 
 #include <stdlib.h>
 #include <time.h>
-#include <sys/time.h>
 
 #include "tain.h"
 
 struct tain *
 tain_now(struct tain *t)
 {
-  struct timeval now;
+  struct timespec now;
 
-  gettimeofday(&now, NULL);
+  clock_gettime(CLOCK_REALTIME, &now);
   tain_load_utc(t, now.tv_sec);
-  t->nsec = (1000 * now.tv_usec) + 500;
+  t->nsec = now.tv_nsec;
 
   return t;
 }
