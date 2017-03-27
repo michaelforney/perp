@@ -1,6 +1,6 @@
 # THANKS
 # perp project acknowledgements and gratitude
-# wcm, 2012.01.04 - 2012.01.04
+# wcm, 2012.01.04 - 2013.01.11
 # ===
 
 Many contributors and users have given explicit help and support with
@@ -26,4 +26,13 @@ Elie De Brauwer
 Laurent Bercot
  - maintainer of supervision mailing list
 
+Michael Conrad
+ - bug reports and feature enhancements
+
+Eivind Uggedal
+ - doc fixes
+
+Jorge Almeida
+ - build reports and feature requests
+ 
 ### EOF
