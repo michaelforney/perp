@@ -217,8 +217,9 @@ static
 void
 perpd_control_init(void)
 {
-  int  fdbase;  
-  int  fd = -1;
+  int     fdbase;
+  int     fd = -1;
+  mode_t  umask_orig;
 
   /* setup for return to base directory: */
   if((fdbase = open(".", O_RDONLY)) == -1){
@@ -226,7 +227,7 @@ perpd_control_init(void)
   }
 
   /* setup umask for intentional mode on file creation: */
-  umask(0);
+  umask_orig = umask(0);
 
   /* initialize .control directory: */
   if(mkdir(PERP_CONTROL, 0700) == -1){
@@ -285,6 +286,9 @@ perpd_control_init(void)
       fatal_syserr("failure fchdir() to base directory");
   }
   close(fdbase);
+
+  /* restore umask: */
+  umask(umask_orig);
 
   return;
 }
