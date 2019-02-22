@@ -23,7 +23,7 @@ hdb_dynread(struct hdb *H, struct dynbuf *B, size_t len, uint32_t offset)
   if(dynbuf_grow(B, len) == -1)
       return -1;
 
-  if(hdb_read(H, dynbuf_BUF(B) + dynbuf_LEN(B), len, offset) == -1)
+  if(hdb_read(H, (uchar_t *)dynbuf_BUF(B) + dynbuf_LEN(B), len, offset) == -1)
       return -1;
 
   dynbuf_LEN(B) += len;

@@ -19,10 +19,11 @@ dynbuf_putbuf(struct dynbuf *d, const void *buf, size_t len)
     if(dynbuf_grow(d, (len + 1)) != 0)
         return -1;  /* error! */
 
-    buf_copy((d->buf + d->p), buf, len);
+    b = d->buf;
+    buf_copy(b + d->p, buf, len);
 
     d->p += len;
-    b = d->buf; b[d->p] = 'Q'; /* "offensive programming" */
+    b[d->p] = 'Q'; /* "offensive programming" */
 
     return 0; /* no error */
 }

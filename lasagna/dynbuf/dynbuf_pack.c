@@ -46,7 +46,7 @@ dynbuf_pack(struct dynbuf *D, const char *fmt, ...)
   }
 
   /* with need satisfied, append directly into buf: */
-  b = (D->buf + D->p);
+  b = (uchar_t *)D->buf + D->p;
 
   va_start(args, fmt);
   w = upak_vpack(b, fmt, args);

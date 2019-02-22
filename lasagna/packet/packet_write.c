@@ -50,11 +50,12 @@ packet_write(int fd, const void *packet, size_t n)
 {
    ssize_t  w = 0;
    size_t   to_write = n;
+   const char *b = packet;
 
    while(to_write > 0){
 
        do{
-           w = write(fd, packet, to_write);
+           w = write(fd, b, to_write);
        }while((w == -1) && (errno == EINTR));
 
        if(w == -1)
@@ -63,7 +64,7 @@ packet_write(int fd, const void *packet, size_t n)
        if(w == 0)
            continue;
 
-       packet += w;
+       b += w;
        to_write -= w;
    }
 

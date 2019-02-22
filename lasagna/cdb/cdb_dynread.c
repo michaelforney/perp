@@ -23,7 +23,7 @@ cdb_dynread(struct cdb *C, struct dynbuf *B, size_t len, uint32_t offset)
   if(dynbuf_grow(B, len) == -1)
       return -1;
 
-  if(cdb_read(C, dynbuf_BUF(B) + dynbuf_LEN(B), len, offset) == -1)
+  if(cdb_read(C, (uchar_t *)dynbuf_BUF(B) + dynbuf_LEN(B), len, offset) == -1)
       return -1;
 
   dynbuf_LEN(B) += len;

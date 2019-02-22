@@ -124,7 +124,7 @@ const char *gzip_path = NULL;
 /*
 ** declarations in scope:
 */
-static void  write_all(int fd, void *buf, size_t len);
+static void  write_all(int fd, char *buf, size_t len);
 static void stamp8601_make(char *stamp_buf);
 static void init_logdir(struct tinylog *tinylog);
 static void init_current(struct tinylog *tinylog, int resume);
@@ -182,7 +182,7 @@ ssize_t read_op(int fd, void *buf, size_t len)
 */
 static
 void
-write_all(int fd, void *buf, size_t len)
+write_all(int fd, char *buf, size_t len)
 {
   ssize_t w = 0;
   tain_t  epause = tain_INIT(0, EPAUSE);

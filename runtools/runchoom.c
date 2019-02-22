@@ -59,7 +59,7 @@ static char  setbuf[256];
 static char  pidfmt[NFMT_SIZE];
 
 /* functions in scope: */
-static int write_all(int fd, void *buf, size_t to_write);
+static int write_all(int fd, char *buf, size_t to_write);
 static void do_choom(void);
 
 /* syserr_warn() macro: */
@@ -77,7 +77,7 @@ static void do_choom(void);
 
 static
 int
-write_all(int fd, void *buf, size_t to_write)
+write_all(int fd, char *buf, size_t to_write)
 {
   ssize_t  w = 0;
 
