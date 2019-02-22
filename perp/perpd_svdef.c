@@ -186,7 +186,7 @@ void
 perpd_svdef_checkfail(struct svdef *svdef)
 {
   struct subsv  *subsv;
-  int            target, r = 0;
+  int            target;
 
   /* insanity? */
   if(!(svdef->bitflags & SVDEF_FLAG_ACTIVE))
@@ -201,7 +201,7 @@ perpd_svdef_checkfail(struct svdef *svdef)
   subsv = (svdef->bitflags & SVDEF_FLAG_HASLOG) ? &svdef->svpair[SUBSV_LOG] : NULL;
   if((subsv != NULL) && (subsv->bitflags & SUBSV_FLAG_FAILING)){
       target = (subsv->bitflags & SUBSV_FLAG_ISRESET) ? SVRUN_RESET : SVRUN_START;
-      r = perpd_svdef_run(svdef, SUBSV_LOG, target);
+      perpd_svdef_run(svdef, SUBSV_LOG, target);
   }
 
   /* XXX, bail here if log is failing? */
