@@ -22,7 +22,7 @@ static const char prog_usage[] = "[-hV] [ ident [ facility ]]";
 #define INBUF_SIZE  1024
 uchar_t  inbuf[INBUF_SIZE];
 static ssize_t  read_op(int fd, void *buf, size_t len);
-ioq_t in = ioq_INIT(0, inbuf, sizeof inbuf, &read_op);
+ioq_t in = ioq_INITR(0, inbuf, sizeof inbuf, &read_op);
 
 /* buffer for sissylog's own messages: */
 static char attention[200];

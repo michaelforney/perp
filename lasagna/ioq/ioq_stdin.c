@@ -19,7 +19,7 @@ ssize_t ioq_fd0_read(int fd, void *buf, size_t len)
 
 /* stdin: */
 uchar_t ioq_fd0_buf[IOQ_BUFSIZE];
-static ioq_t fd0_ = ioq_INIT(0, ioq_fd0_buf, sizeof ioq_fd0_buf, &ioq_fd0_read);
+static ioq_t fd0_ = ioq_INITR(0, ioq_fd0_buf, sizeof ioq_fd0_buf, &ioq_fd0_read);
 ioq_t *ioq0 = &fd0_;
 
 /* eof: ioq_stdin.c */

@@ -44,7 +44,7 @@
 
 
 /* internal declarations: */
-static int write_all(int fd, uchar_t *buf, size_t to_write, ssize_t (*op)());
+static int write_all(int fd, uchar_t *buf, size_t to_write, ssize_t (*op)(int, const void *, size_t));
 
 
 /*
@@ -63,7 +63,7 @@ static int write_all(int fd, uchar_t *buf, size_t to_write, ssize_t (*op)());
 */      
 static
 int
-write_all(int fd, uchar_t *buf, size_t to_write, ssize_t (*op)())
+write_all(int fd, uchar_t *buf, size_t to_write, ssize_t (*op)(int, const void *, size_t))
 {
   ssize_t  w = 0;
 
@@ -106,7 +106,7 @@ ioq_flush(ioq_t *ioq)
   if(to_write == 0) return 0;
   ioq->p = 0;
 
-  return write_all(ioq->fd, ioq->buf, to_write, ioq->op);
+  return write_all(ioq->fd, ioq->buf, to_write, ioq->op.w);
 }
 
 
@@ -137,7 +137,7 @@ ioq_put(ioq_t *ioq, const uchar_t *data, size_t len)
       while(len > ioq->n){
           /* don't write more than len! */
           if(len < n) n = len;
-          if(write_all(ioq->fd, (uchar_t *)data, n, ioq->op) == -1){
+          if(write_all(ioq->fd, (uchar_t *)data, n, ioq->op.w) == -1){
               /* write() error: */
               return -1;
           }
@@ -178,7 +178,7 @@ ioq_putflush(ioq_t *ioq, const uchar_t *data, size_t len)
   if(ioq_flush(ioq) == -1) return -1;
 
   /* write() the rest */
-  return write_all(ioq->fd, (uchar_t *)data, len, ioq->op);
+  return write_all(ioq->fd, (uchar_t *)data, len, ioq->op.w);
 }
 
 

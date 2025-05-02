@@ -10,7 +10,7 @@
 
 /* stderr: */
 uchar_t ioq_fd2_buf[256];
-static ioq_t fd2_ = ioq_INIT(2, ioq_fd2_buf, sizeof ioq_fd2_buf, &write);
+static ioq_t fd2_ = ioq_INITW(2, ioq_fd2_buf, sizeof ioq_fd2_buf, &write);
 ioq_t *ioq2 = &fd2_;
 
 

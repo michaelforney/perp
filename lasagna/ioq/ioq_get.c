@@ -63,7 +63,7 @@
 */           
 
 /* internal declarations: */
-static ssize_t read_once(int fd, void *buf, size_t to_read, ssize_t (*op)());
+static ssize_t read_once(int fd, void *buf, size_t to_read, ssize_t (*op)(int, void *, size_t));
 static size_t ioq_extract(ioq_t *ioq, void *data, size_t len);
 
 
@@ -78,7 +78,7 @@ static size_t ioq_extract(ioq_t *ioq, void *data, size_t len);
 */
 static
 ssize_t
-read_once(int fd, void *buf, size_t want, ssize_t (*op)())
+read_once(int fd, void *buf, size_t want, ssize_t (*op)(int, void *, size_t))
 {
   ssize_t r;
 
@@ -145,7 +145,7 @@ ioq_get(ioq_t *ioq, uchar_t *data, size_t len)
       /* caller wants more than internal buffer size:
       **   satisfy directly with a read() operation
       */
-      return read_once(ioq->fd, data, len, ioq->op);
+      return read_once(ioq->fd, data, len, ioq->op.r);
   }
 
   /* caller wants less than internal buffer size:
@@ -181,7 +181,7 @@ ioq_feed(ioq_t *ioq)
   }
 
   /* buffer empty, do a read(): */
-  r = read_once(ioq->fd, ioq->buf, ioq->n, ioq->op);
+  r = read_once(ioq->fd, ioq->buf, ioq->n, ioq->op.r);
   if(r <= 0){
       /* eof or error from read(): */
       return r;

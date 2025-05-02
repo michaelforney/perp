@@ -73,7 +73,7 @@ struct tinylog {
 #define INBUF_SIZE  1024
 uchar_t  inbuf[INBUF_SIZE];
 ssize_t read_op(int fd, void *buf, size_t len);
-ioq_t  in = ioq_INIT(0, inbuf, sizeof inbuf , &read_op);
+ioq_t  in = ioq_INITR(0, inbuf, sizeof inbuf, &read_op);
 
 /*
 ** variables in scope:

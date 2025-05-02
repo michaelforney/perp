@@ -20,21 +20,26 @@ struct ioq {
   uchar_t   *buf;    /* internal buffer */
   size_t     n;      /* buffer length   */
   size_t     p;      /* position */
-  ssize_t  (*op)();  /* io operation */
+  union {            /* io operation */
+    ssize_t  (*r)(int, void *, size_t);
+    ssize_t  (*w)(int, const void *, size_t);
+  } op;
 };
 typedef struct ioq  ioq_t;
 
 /* ioq_init()
 **   initialize an ioq_t object
 */
-extern void ioq_init(ioq_t *ioq, int fd, uchar_t *buf, size_t len, ssize_t (*op)());
+extern void ioq_initr(ioq_t *ioq, int fd, uchar_t *buf, size_t len, ssize_t (*op)(int, void *, size_t));
+extern void ioq_initw(ioq_t *ioq, int fd, uchar_t *buf, size_t len, ssize_t (*op)(int, const void *, size_t));
 
 /* ioq_INIT()
 **   djb idiom for macro initialization of static ioq_t object, like so:
 **
 **     ioq_t  ioq = ioq_INIT(fd, buf, sizeof buf, &op);
 */
-#define ioq_INIT(fd,buf,len,op) {(fd), (buf), (len), 0, (op) }
+#define ioq_INITR(fd,buf,len,op) {(fd), (buf), (len), 0, {.r = (op)} }
+#define ioq_INITW(fd,buf,len,op) {(fd), (buf), (len), 0, {.w = (op)} }
 
 
 /* note:
