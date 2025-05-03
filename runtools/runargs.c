@@ -77,7 +77,7 @@ do_argfile(const char *argfile)
       }
   }
 
-  ioq_init(&q, fd, qbuf, sizeof qbuf, &read); 
+  ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
 
   while(!eof){ 
       /* recycle any allocated dynstr: */

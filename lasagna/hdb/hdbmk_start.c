@@ -35,7 +35,7 @@ hdbmk_start(struct hdbmk *M, int fd, const uchar_t *comment, uint32_t clen)
 
   /* setup ioq writer: */
   M->fd = fd;
-  ioq_init(&M->ioq, fd, M->buf, sizeof M->buf, &write);
+  ioq_initw(&M->ioq, fd, M->buf, sizeof M->buf, &write);
 
   /* initialize subtab counters: */
   for(i = 0; i < HDB_NTABS; ++i){

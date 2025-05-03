@@ -89,7 +89,7 @@ do_envfile(const char *envfile)
       }
   }
 
-  ioq_init(&q, fd, qbuf, sizeof qbuf, &read); 
+  ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
 
   while(!eof){ 
       /* recycle any allocated dynstr: */
@@ -208,7 +208,7 @@ do_envdir(const char *envdir)
       }
 
       /* prepare ioq buffer and recycle line buffer: */
-      ioq_init(&q, fd, qbuf, sizeof qbuf, &read);
+      ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
       dynstr_CLEAR(&L);
 
       /* one line read: */

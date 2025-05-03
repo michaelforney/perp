@@ -33,7 +33,7 @@ cdbmk_init(struct cdbmk *M, int fd)
 
   /* setup ioq writer: */
   M->fd = fd;
-  ioq_init(&M->ioq, fd, M->buf, sizeof M->buf, &write);
+  ioq_initw(&M->ioq, fd, M->buf, sizeof M->buf, &write);
 
   /* set fp to begin writing record section R (offset 2048 bytes): */
   M->fp = (off_t)(sizeof(uint32_t) * 2 * CDB_NTABS);

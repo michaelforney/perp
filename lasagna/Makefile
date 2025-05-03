@@ -705,7 +705,8 @@ hfunc_postmix32.o : hfunc/hfunc_postmix32.c hfunc.h
 IOQ_OBJS=\
   ioq_get.o \
   ioq_getln.o \
-  ioq_init.o \
+  ioq_initr.o \
+  ioq_initw.o \
   ioq_put.o \
   ioq_putfd.o \
   ioq_putfile.o \
@@ -720,8 +721,11 @@ ioq_get.o : ioq/ioq_get.c ioq.h
 ioq_getln.o : ioq/ioq_getln.c ioq.h
 	$(CC) $(CFLAGS) -c ioq/ioq_getln.c
 
-ioq_init.o : ioq/ioq_init.c ioq.h
-	$(CC) $(CFLAGS) -c ioq/ioq_init.c
+ioq_initr.o : ioq/ioq_initr.c ioq.h
+	$(CC) $(CFLAGS) -c ioq/ioq_initr.c
+
+ioq_initw.o : ioq/ioq_initw.c ioq.h
+	$(CC) $(CFLAGS) -c ioq/ioq_initw.c
 
 ioq_put.o : ioq/ioq_put.c ioq.h
 	$(CC) $(CFLAGS) -c ioq/ioq_put.c

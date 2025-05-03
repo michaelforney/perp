@@ -172,7 +172,7 @@ do_argfile(const char *optc, const char *argfile)
       fatal_syserr("unable to open file for option -", optc, " ", argfile);
   }
 
-  ioq_init(&q, fd, qbuf, sizeof qbuf, &read); 
+  ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
 
   while(!eof){ 
       /* recycle any allocated dynstr: */
@@ -274,7 +274,7 @@ do_envfile(const char *optc, const char *arg)
       fatal_syserr("failure opening file for option -", optc, ": ", arg);
   }
 
-  ioq_init(&q, fd, qbuf, sizeof qbuf, &read); 
+  ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
 
   while(!eof){ 
       /* recycle any allocated dynstr: */
@@ -393,7 +393,7 @@ do_envdir(const char *optc, const char *arg)
       }
 
       /* prepare ioq buffer and recycle line buffer: */
-      ioq_init(&q, fd, qbuf, sizeof qbuf, &read);
+      ioq_initr(&q, fd, qbuf, sizeof qbuf, &read);
       dynstr_CLEAR(&L);
 
       /* one line read: */
